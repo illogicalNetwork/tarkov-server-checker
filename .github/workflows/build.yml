@@ -1,0 +1,54 @@
+name: Windows Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  RELEASE_VERSION: v1.0.0
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run build script
+      run: npm run package-win
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: tarkov-server-checker
+        path: ./tarkov-server-checker.zip
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
+      with:
+        tag_name: v1.0.1
+        release_name: Release v1.0.1
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./tarkov-server-checker.zip
+        asset_name: tarkov-server-checker.zip
+        asset_content_type: application/zip

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Log File Analyzer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+
+<body class="p-3 mb-2 bg-light text-dark">
+    <div id="mainContent" style="display:none;">
+        <div class="container">
+            <h1 class="text-center mb-4">Log File Analyzer</h1>
+            <div class="row mb-3">
+                <div class="col text-center">
+                    <button id="selectFileButton" class="btn btn-primary">Select File</button>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col text-center">
+                    <input type="text" id="shortIdInput" class="form-control" placeholder="Enter Short ID">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col text-center">
+                    <button id="processButton" class="btn btn-success">Process File</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <div id="selectedFilePath" class="alert alert-info" role="alert"></div>
+                    <div id="result" class="alert alert-success" role="alert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="apiKeyModal" style="display:none;">
+        <h2>Enter API Key</h2>
+        <input type="text" id="apiKeyInput" />
+        <button id="saveApiKeyButton">Save</button>
+    </div>
+
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>

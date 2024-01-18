@@ -1,0 +1,20 @@
+{
+  "name": "tarkov-server-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "package-win": "electron-packager . --overwrite --platform=win32 --arch=x64 --icon=icon.ico --prune=true --ignore=config.json --out=temp-dist && powershell Compress-Archive -Path .\\temp-dist\\tarkov-server-checker-win32-x64 -DestinationPath .\\tarkov-server-checker.zip -Force && rd /s /q .\\temp-dist",
+    "build-win":"electron-packager . --overwrite --platform=win32 --arch=x64 --icon=icon.ico --prune=true --ignore=config.json --out=temp-dist"
+  },
+  
+  "author": "LogicalSolutions",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.5"
+  },
+  "devDependencies": {
+    "electron": "^28.1.4",
+    "electron-packager": "^17.1.2"
+  }
+}
